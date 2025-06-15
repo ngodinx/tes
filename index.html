@@ -42,7 +42,7 @@
                 ], testMode = false, options = {}).then(response => {
                     return response;
                 })
-                alert(response);
+                return response;
             } catch (error) {
                 console.error('Terjadi kesalahan saat mengambil data:', error);
                 throw error;
