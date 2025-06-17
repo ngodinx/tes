@@ -64,6 +64,8 @@
             customElements.whenDefined('puter-dialog').then(() => {
                 const el = document.querySelector('puter-dialog');
                 alert(JSON.stringify(el));
+                const shadowRoot = el.shadowRoot;
+                alert(JSON.stringify(shadowRoot));
             });
 
         })
