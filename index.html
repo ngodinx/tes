@@ -49,7 +49,6 @@
                 ], testMode = false, options = {}).then(response => {
                     return response;
                 })
-                alert(response);
             } catch (error) {
                 console.error('Terjadi kesalahan saat mengambil data:', error);
                 throw error;
@@ -57,7 +56,7 @@
         }
 
         window.addEventListener('load', () => {
-            alert('ok')
+            /*alert('ok')
 
             fetchData();
 
@@ -70,7 +69,7 @@
 
                     alert(JSON.stringify(button));
                 }, 20000);
-            });
+            });*/
 
         })
     </script>
