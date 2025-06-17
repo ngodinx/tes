@@ -59,8 +59,13 @@
         window.addEventListener('load', () => {
             alert('ok')
 
-            console.log(true);
             fetchData();
+
+            customElements.whenDefined('puter-dialog').then(() => {
+                const el = document.querySelector('puter-dialog');
+                alert(el);
+            });
+
         })
     </script>
 </body>
