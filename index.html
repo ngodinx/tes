@@ -1,78 +1,16 @@
 <html>
 
 <body>
-    <div>halo</div>
     <script src="https://js.puter.com/v2/"></script>
+    <button id="sign-in">Sign in</button>
     <script>
-        async function fetchData() {
-            const host = document.querySelector('puter-dialog');
-            //const shadowRoot = host.shadowRoot;
-
-            // const insideElement = shadowRoot.querySelector('.puter-dialog-content');
-
-            // alert(insideElement);
-
-            try {
-                const response = await puter.ai.chat([
-                    {
-                        "role": "system",
-                        "content": "Halo! Ada yang bisa saya bantu hari ini?"
-                    },
-                    {
-                        "role": "user",
-                        "content": "Halo, saya ingin belajar membuat website pribadi. Bisa bantu?"
-                    },
-                    {
-                        "role": "system",
-                        "content": "Tentu! Kamu ingin website seperti apa? Portofolio, blog, atau lainnya?"
-                    },
-                    {
-                        "role": "user",
-                        "content": "Saya Adi, ingin membuat website portofolio."
-                    },
-                    {
-                        "role": "system",
-                        "content": "Bagus! Apakah kamu sudah memiliki domain dan hosting?"
-                    },
-                    {
-                        "role": "user",
-                        "content": "Belum, saya masih bingung memilihnya."
-                    },
-                    {
-                        "role": "system",
-                        "content": "Tidak masalah. Saya bisa bantu rekomendasikan penyedia domain dan hosting terjangkau. Mau?"
-                    },
-                    {
-                        "role": "user",
-                        "content": "Ya, tolong rekomendasinya."
-                    },
-                ], testMode = false, options = {}).then(response => {
-                    return response;
-                })
-                alert(response);
-            } catch (error) {
-                console.error('Terjadi kesalahan saat mengambil data:', error);
-                throw error;
-            }
-        }
-
-        window.addEventListener('load', () => {
-            alert('ok')
-
-            fetchData();
-
-            customElements.whenDefined('puter-dialog').then(() => {
-                setTimeout(() => {
-                    const el = document.querySelector('puter-dialog');
-                    alert(JSON.stringify(el));
-                    const shadowRoot = el.shadowRoot;
-                    const button = shadowRoot.querySelector('button');
-
-                    alert(JSON.stringify(button));
-                }, 20000);
+        // Because signIn() opens a popup window, it must be called from a user action.
+        document.getElementById('sign-in').addEventListener('click', async () => {
+            // signIn() will resolve when the user has signed in.
+            await puter.auth.signIn().then((res) => {
+                puter.print('Signed in<br>' + JSON.stringify(res));
             });
-
-        })
+        });
     </script>
 </body>
 

@@ -1,45 +1,80 @@
-// File: api/chat.js
 
-export default async function handler(req, res) {
-  try {
-    const response = await puter.ai.chat([
-      {
-        role: "system",
-        content: "Halo! Ada yang bisa saya bantu hari ini?"
-      },
-      {
-        role: "user",
-        content: "Halo, saya ingin belajar membuat website pribadi. Bisa bantu?"
-      },
-      {
-        role: "system",
-        content: "Tentu! Kamu ingin website seperti apa? Portofolio, blog, atau lainnya?"
-      },
-      {
-        role: "user",
-        content: "Saya Adi, ingin membuat website portofolio."
-      },
-      {
-        role: "system",
-        content: "Bagus! Apakah kamu sudah memiliki domain dan hosting?"
-      },
-      {
-        role: "user",
-        content: "Belum, saya masih bingung memilihnya."
-      },
-      {
-        role: "system",
-        content: "Tidak masalah. Saya bisa bantu rekomendasikan penyedia domain dan hosting terjangkau. Mau?"
-      },
-      {
-        role: "user",
-        content: "Ya, tolong rekomendasinya."
-      }
-    ]);
+<html>
 
-    res.status(200).json({ result: response });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: 'Terjadi kesalahan' });
-  }
-}
+<body>
+    <div>halo</div>
+    <script src="https://js.puter.com/v2/"></script>
+    <script>
+        async function fetchData() {
+            const host = document.querySelector('puter-dialog');
+            //const shadowRoot = host.shadowRoot;
+
+            // const insideElement = shadowRoot.querySelector('.puter-dialog-content');
+
+            // alert(insideElement);
+
+            try {
+                const response = await puter.ai.chat([
+                    {
+                        "role": "system",
+                        "content": "Halo! Ada yang bisa saya bantu hari ini?"
+                    },
+                    {
+                        "role": "user",
+                        "content": "Halo, saya ingin belajar membuat website pribadi. Bisa bantu?"
+                    },
+                    {
+                        "role": "system",
+                        "content": "Tentu! Kamu ingin website seperti apa? Portofolio, blog, atau lainnya?"
+                    },
+                    {
+                        "role": "user",
+                        "content": "Saya Adi, ingin membuat website portofolio."
+                    },
+                    {
+                        "role": "system",
+                        "content": "Bagus! Apakah kamu sudah memiliki domain dan hosting?"
+                    },
+                    {
+                        "role": "user",
+                        "content": "Belum, saya masih bingung memilihnya."
+                    },
+                    {
+                        "role": "system",
+                        "content": "Tidak masalah. Saya bisa bantu rekomendasikan penyedia domain dan hosting terjangkau. Mau?"
+                    },
+                    {
+                        "role": "user",
+                        "content": "Ya, tolong rekomendasinya."
+                    },
+                ], testMode = false, options = {}).then(response => {
+                    return response;
+                })
+                alert(response);
+            } catch (error) {
+                console.error('Terjadi kesalahan saat mengambil data:', error);
+                throw error;
+            }
+        }
+
+        window.addEventListener('load', () => {
+            alert('ok')
+
+            fetchData();
+
+            customElements.whenDefined('puter-dialog').then(() => {
+                setTimeout(() => {
+                    const el = document.querySelector('puter-dialog');
+                    alert(JSON.stringify(el));
+                    const shadowRoot = el.shadowRoot;
+                    const button = shadowRoot.querySelector('button');
+
+                    alert(JSON.stringify(button));
+                }, 20000);
+            });
+
+        })
+    </script>
+</body>
+
+</html>
