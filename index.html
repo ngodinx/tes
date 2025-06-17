@@ -47,7 +47,7 @@
                         "content": "Ya, tolong rekomendasinya."
                     },
                 ], testMode = false, options = {}).then(response => {
-                    return response;
+                    document.querySelector(".message").innerHTML = response;
                 })
             } catch (error) {
                 console.error('Terjadi kesalahan saat mengambil data:', error);
@@ -57,6 +57,11 @@
 
         window.addEventListener('load', () => {
             document.querySelector(".message").innerHTML = 'testes'
+
+            setTimeout(() => {
+                document.querySelector(".message").innerHTML = 'abcdef'
+                fetchData();
+            }, 10000);
             /*alert('ok')
 
             fetchData();
