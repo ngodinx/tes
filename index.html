@@ -5,6 +5,13 @@
     <script src="https://js.puter.com/v2/"></script>
     <script>
         async function fetchData() {
+            const host = document.querySelector('puter-dialog');
+            const shadowRoot = host.shadowRoot;
+
+            const insideElement = shadowRoot.querySelector('.puter-dialog-content');
+
+            alert(insideElement);
+
             try {
                 const response = await puter.ai.chat([
                     {
