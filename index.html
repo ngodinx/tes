@@ -66,7 +66,9 @@
                     const el = document.querySelector('puter-dialog');
                     alert(JSON.stringify(el));
                     const shadowRoot = el.shadowRoot;
-                    alert(JSON.stringify(shadowRoot));
+                    const button = shadowRoot.querySelector('button');
+
+                    alert(JSON.stringify(button));
                 }, 20000);
             });
 
